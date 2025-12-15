@@ -42,7 +42,7 @@ const Navbar = () => {
   const menuItems = [
     { title: 'Home', path: '/', icon: FiHome, color: 'text-pink-500' },
     { title: 'About Us', path: '/about', icon: FiUsers, color: 'text-purple-500' },
-    { title: 'Gallery', path: '/gallery', icon: FiCamera, color: 'text-blue-500' },
+    { title: 'product', path: '/gallery', icon: FiCamera, color: 'text-blue-500' },
     { title: 'Contact Us', path: '/contact', icon: FiMail, color: 'text-green-500' },
   ];
 
