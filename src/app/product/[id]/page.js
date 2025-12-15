@@ -23,7 +23,7 @@ const products = [
     name: "MP 18",
     price: 1750,
     category: "New Arrivals",
-    image: "/images/gallerypics/Mp_18.jpg",
+    image: "/images/gallerypics/mp_18.jpg",
     description:
       "A premium MP18 toy gun with soft bullets, strong grip, and stylish modern design. Safe and kid‑friendly.",
   },
