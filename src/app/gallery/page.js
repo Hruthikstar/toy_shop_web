@@ -165,21 +165,18 @@ export default function GalleryPage() {
                 <div className="flex-1" />
 
                 <div className="mt-4 pt-4 border-t border-gray-100">
-                  <div className="text-left mb-3">
-                    <span className="inline-block px-2 py-1 text-xs bg-pink-100 text-pink-600 rounded-full font-medium mb-2">
-                      {product.category}
-                    </span>
-                    <h3 className="font-semibold text-gray-900 text-sm">{product.name}</h3>
-                    <p className="text-xs text-gray-400 mt-1">{product.description}</p>
-                    <p className="font-bold text-pink-500 mt-2">₹{product.price}</p>
-                  </div>
+                  <div className="flex items-start justify-between gap-3">
+                    {/* Left: Product Info */}
+                    <div className="flex-1 text-left">
+                      <span className="inline-block px-2 py-1 text-xs bg-pink-100 text-pink-600 rounded-full font-medium mb-1.5">
+                        {product.category}
+                      </span>
+                      <h3 className="font-semibold text-gray-900 text-sm">{product.name}</h3>
+                      <p className="text-xs text-gray-400 mt-1">{product.description}</p>
+                      <p className="font-bold text-pink-500 mt-2">₹{product.price}</p>
+                    </div>
 
-                  <div className="flex items-center justify-between gap-2 mt-4">
-                    {(quantities[product.id] || 1) > 1 && (
-                      <div className="text-xs font-semibold text-gray-600">Qty: {quantities[product.id]}</div>
-                    )}
-                    {(quantities[product.id] || 1) === 1 && <div />}
-
+                    {/* Right: Add Button */}
                     <button
                       onClick={(e) => {
                         e.preventDefault();
@@ -197,8 +194,9 @@ export default function GalleryPage() {
                         // reset quantity to 1 for this product
                         setQuantities((q) => ({ ...q, [product.id]: 1 }));
                       }}
-                      className="px-4 py-2 bg-pink-500 text-white text-sm font-semibold rounded-lg hover:bg-pink-600 transition"
+                      className="px-4 py-2 bg-pink-500 text-white text-sm font-semibold rounded-lg hover:bg-pink-600 transition whitespace-nowrap"
                       aria-label={`Add ${product.name} to cart`}
+                      title={`Qty: ${quantities[product.id] || 1}`}
                     >
                       Add +
                     </button>
