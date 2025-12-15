@@ -165,7 +165,7 @@ export default function GalleryPage() {
                 <div className="flex-1" />
 
                 <div className="mt-4 pt-4 border-t border-gray-100">
-                  <div className="flex items-start justify-between gap-3">
+                  <div className="flex items-center justify-between gap-3">
                     {/* Left: Product Info */}
                     <div className="flex-1 text-left">
                       <span className="inline-block px-2 py-1 text-xs bg-pink-100 text-pink-600 rounded-full font-medium mb-1.5">
