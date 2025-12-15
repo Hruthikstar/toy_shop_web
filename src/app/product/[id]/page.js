@@ -195,9 +195,10 @@ export default function ProductDetailPage() {
 
         {/* Related Products */}
         <div className="mt-16 pt-16 border-t border-gray-200">
-          <h2 className="text-3xl font-bold text-gray-900 mb-8">Related Products</h2>
+          <h2 className="text-3xl font-bold text-gray-900 mb-2">Related Products</h2>
+          <p className="text-gray-500 mb-8">Check out these similar items you might like</p>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             {products
               .filter((p) => p.id !== product.id)
               .slice(0, 4)
@@ -205,17 +206,51 @@ export default function ProductDetailPage() {
                 <Link
                   key={related.id}
                   href={`/product/${related.id}`}
-                  className="border rounded-xl p-4 hover:shadow-md transition bg-white text-center hover:bg-pink-50"
+                  className="group block border border-gray-200 rounded-xl overflow-hidden hover:shadow-xl transition-all duration-300 bg-white hover:border-pink-200 hover:bg-pink-50"
                 >
-                  <Image
-                    src={related.image}
-                    alt={related.name}
-                    width={200}
-                    height={200}
-                    className="w-full h-48 object-cover rounded-lg mb-4"
-                  />
-                  <h3 className="font-semibold text-gray-900 mb-1">{related.name}</h3>
-                  <p className="text-pink-500 font-bold">₹{related.price}</p>
+                  {/* Image Container */}
+                  <div className="relative h-56 sm:h-64 overflow-hidden bg-gray-50">
+                    <Image
+                      src={related.image}
+                      alt={related.name}
+                      fill
+                      className="object-cover transform transition-transform duration-300 group-hover:scale-110"
+                      sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                    />
+                    {/* Category Badge */}
+                    <span className="absolute top-3 right-3 bg-pink-500 text-white text-xs font-semibold px-3 py-1 rounded-full">
+                      {related.category}
+                    </span>
+                  </div>
+
+                  {/* Content */}
+                  <div className="p-4">
+                    <h3 className="font-semibold text-gray-900 text-sm mb-2 line-clamp-2 group-hover:text-pink-600 transition">
+                      {related.name}
+                    </h3>
+                    <div className="flex items-center justify-between gap-2">
+                      <p className="text-pink-500 font-bold text-lg">₹{related.price}</p>
+                      <button
+                        onClick={(e) => {
+                          e.preventDefault();
+                          e.stopPropagation();
+                          const existingCart = JSON.parse(localStorage.getItem('cart') || '[]');
+                          const existingItem = existingCart.find((it) => it.id === related.id);
+                          if (existingItem) {
+                            existingItem.quantity += 1;
+                          } else {
+                            existingCart.push({ ...related, quantity: 1 });
+                          }
+                          localStorage.setItem('cart', JSON.stringify(existingCart));
+                          window.dispatchEvent(new Event('cartUpdated'));
+                        }}
+                        className="px-3 py-1.5 bg-pink-500 text-white text-xs font-semibold rounded-lg hover:bg-pink-600 transition whitespace-nowrap"
+                        title="Add to cart"
+                      >
+                        Add +
+                      </button>
+                    </div>
+                  </div>
                 </Link>
               ))}
           </div>
