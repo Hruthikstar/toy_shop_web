@@ -2,6 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Use locally installed Gotham when available (no bundled font files) */
+@font-face {
+  font-family: 'Gotham';
+  src: local('Gotham'), local('Gotham Book'), local('Gotham-Book');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Gotham';
+  src: local('Gotham Bold'), local('Gotham-Bold');
+  font-weight: 700;
+  font-style: bold;
+  font-display: swap;
+}
+
 @layer base {
   *, *::before, *::after {
     box-sizing: border-box;
