@@ -141,7 +141,7 @@ export default function GalleryPage() {
             >
               <div className="flex flex-col h-full">
                 <Link href={`/product/${product.id}`} className="block">
-                  <div className="w-full h-44 relative overflow-hidden rounded-lg">
+                  <div className="w-full h-80 sm:h-64 md:h-56 lg:h-44 relative overflow-hidden rounded-lg">
                     <Image
                       src={product.image}
                       alt={product.name}
