@@ -92,7 +92,7 @@ export default function CartPage() {
     message += `%0A🚚 *Delivery Fee:* ₹${DELIVERY_FEE}`;
     message += `%0A💰 *Total:* ₹${grandTotal()}%0A`;
 
-    const phone = "918940163698"; // <-- PUT YOUR WHATSAPP NUMBER HERE
+    const phone = "918680086899"; // <-- PUT YOUR WHATSAPP NUMBER HERE
     window.open(`https://wa.me/${phone}?text=${message}`, "_blank");
   };
 
