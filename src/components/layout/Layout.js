@@ -2,6 +2,7 @@
 "use client";
 import Navbar from './Navbar';
 import Footer from './Footer';
+import FloatingCartButton from './FloatingCartButton';
 
 const Layout = ({ children }) => {
   return (
@@ -11,6 +12,7 @@ const Layout = ({ children }) => {
         {children}
       </main>
       <Footer />
+      <FloatingCartButton />
     </div>
   );
 };

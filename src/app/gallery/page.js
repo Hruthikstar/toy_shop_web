@@ -149,11 +149,14 @@ export default function GalleryPage() {
                       sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
                       className="object-cover transform transition-transform duration-300 group-hover:scale-105"
                     />
-                  </div>
 
-                  <h3 className="mt-4 font-semibold text-center line-clamp-2">
-                    {product.name}
-                  </h3>
+                    {/* Premium overlay title (bottom-left) */}
+                    <div className="absolute left-3 bottom-3 bg-black/45 backdrop-blur-sm text-white px-3 py-1.5 rounded-md">
+                      <h3 className="text-sm font-playfair font-semibold tracking-wide">
+                        {product.name}
+                      </h3>
+                    </div>
+                  </div>
                 </Link>
 
                 <div className="flex-1" />

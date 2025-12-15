@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;600&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -17,14 +19,23 @@
 
 /* Set base typography */
 body {
-  @apply font-sans text-gray-800;
+  @apply text-gray-800;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 /* Set heading styles */
 h1, h2, h3, h4, h5, h6 {
-  @apply font-poppins font-bold;
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+}
+
+/* Utility font classes for Tailwind-like usage */
+.font-poppins {
+  font-family: 'Poppins', sans-serif;
+}
+.font-playfair {
+  font-family: 'Playfair Display', serif;
 }
 
 /* Set link styles */
@@ -93,5 +104,5 @@ input, textarea {
 /* Base styles */
 body {
   color: #171717;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Poppins', Arial, Helvetica, sans-serif;
 }
