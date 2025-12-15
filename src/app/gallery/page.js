@@ -12,6 +12,7 @@ const products = [
     price: 550,
     category: "New Arrivals",
     image: "/images/gallerypics/blaze_storm.jpg",
+    description: "Powerful soft bullet blaster toy",
   },
   {
     id: 2,
@@ -19,6 +20,7 @@ const products = [
     price: 1750,
     category: "New Arrivals",
     image: "/images/gallerypics/mp_18.jpg",
+    description: "Premium toy gun with soft bullets",
   },
   {
     id: 3,
@@ -26,6 +28,7 @@ const products = [
     price: 1750,
     category: "New Arrivals",
     image: "/images/gallerypics/naja_cobra.jpg",
+    description: "Super soft cobra plush toy",
   },
   {
     id: 4,
@@ -33,6 +36,7 @@ const products = [
     price: 3300,
     category: "Vehicles",
     image: "/images/gallerypics/climbing.jpg",
+    description: "Rugged RC car with LED lights",
   },
   {
     id: 5,
@@ -40,6 +44,7 @@ const products = [
     price: 1599,
     category: "Vehicles",
     image: "/images/gallerypics/special_car.jpg",
+    description: "High-speed racing car with responsive controls",
   },
   {
     id: 6,
@@ -47,6 +52,7 @@ const products = [
     price: 320,
     category: "New Arrivals",
     image: "/images/gallerypics/biginto_energy.jpg",
+    description: "Stunt car with spinning abilities",
   },
   {
     id: 7,
@@ -54,6 +60,7 @@ const products = [
     price: 320,
     category: "New Arrivals",
     image: "/images/gallerypics/electric.jpg",
+    description: "Responds to voice commands",
   },
   {
     id: 8,
@@ -61,6 +68,7 @@ const products = [
     price: 1070,
     category: "Soft Toys",
     image: "/images/gallerypics/hopping_ball.jpg",
+    description: "Durable bouncing ball toy",
   },
   {
     id: 9,
@@ -68,6 +76,7 @@ const products = [
     price: 470,
     category: "Soft Toys",
     image: "/images/gallerypics/card_early.jpg",
+    description: "Interactive learning device",
   },
   {
     id: 10,
@@ -75,6 +84,7 @@ const products = [
     price: 1750,
     category: "Vehicles",
     image: "/images/gallerypics/electric_watergun.jpg",
+    description: "Automatic water gun with long-range",
   },
   
 ];
@@ -154,13 +164,14 @@ export default function GalleryPage() {
 
                 <div className="flex-1" />
 
-                <div className="mt-3 flex items-center justify-between">
-                  <div className="text-left">
+                <div className="mt-3">
+                  <div className="text-left mb-2">
                     <h3 className="font-semibold text-gray-900">{product.name}</h3>
-                    <p className="font-bold text-pink-500">₹{product.price}</p>
+                    <p className="text-xs text-gray-400">{product.description}</p>
+                    <p className="font-bold text-pink-500 mt-1">₹{product.price}</p>
                   </div>
 
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-2 justify-end mt-3">
                     {(quantities[product.id] || 1) > 1 && (
                       <div className="w-10 text-center font-semibold">{quantities[product.id]}</div>
                     )}
