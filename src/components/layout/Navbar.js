@@ -26,6 +26,20 @@ const Navbar = () => {
       setCartCount(count);
     };
 
+    // If the page was reloaded, clear the cart so refresh shows empty cart
+    try {
+      const navEntries = performance.getEntriesByType ? performance.getEntriesByType('navigation') : null;
+      const nav = navEntries && navEntries[0];
+      const isReload = (nav && nav.type === 'reload') || (performance.navigation && performance.navigation.type === 1);
+      if (isReload) {
+        localStorage.removeItem('cart');
+        // notify other listeners
+        window.dispatchEvent(new Event('cartUpdated'));
+      }
+    } catch (e) {
+      // ignore if performance API isn't available
+    }
+
     updateCartCount();
 
     // Listen for storage changes

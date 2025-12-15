@@ -12,7 +12,7 @@ const products = [
   {
     id: 1,
     name: "BLAZE STORM",
-    price: 1299,
+    price: 550,
     category: "New Arrivals",
     image: "/images/gallerypics/blaze_storm.jpg",
     description:
@@ -21,7 +21,7 @@ const products = [
   {
     id: 2,
     name: "MP 18",
-    price: 899,
+    price: 1750,
     category: "New Arrivals",
     image: "/images/gallerypics/Mp_18.jpg",
     description:
@@ -30,7 +30,7 @@ const products = [
   {
     id: 3,
     name: "NAJA COBRA",
-    price: 699,
+    price: 1750,
     category: "Soft Toys",
     image: "/images/gallerypics/naja_cobra.jpg",
     description:
@@ -39,7 +39,7 @@ const products = [
   {
     id: 4,
     name: "ROCK CLIMBER",
-    price: 1599,
+    price: 3300,
     category: "Vehicles",
     image: "/images/gallerypics/climbing.jpg",
     description:
@@ -57,7 +57,7 @@ const products = [
   {
     id: 6,
     name: "BIGINTO ENERGY",
-    price: 1599,
+    price: 320,
     category: "Vehicles",
     image: "/images/gallerypics/biginto_energy.jpg",
     description:
@@ -66,7 +66,7 @@ const products = [
   {
     id: 7,
     name: "VOICE‑CONTROLLED TUMBLING BABY",
-    price: 1599,
+    price: 320,
     category: "Electronic Toys",
     image: "/images/gallerypics/electric.jpg",
     description:
@@ -75,7 +75,7 @@ const products = [
   {
     id: 8,
     name: "HOPPING BALL",
-    price: 1599,
+    price: 1070,
     category: "Outdoor Toys",
     image: "/images/gallerypics/hopping_ball.jpg",
     description:
@@ -84,7 +84,7 @@ const products = [
   {
     id: 9,
     name: "CARD EARLY EDUCATION DEVICE",
-    price: 1599,
+    price: 470,
     category: "Educational Toys",
     image: "/images/gallerypics/card_early.jpg",
     description:
@@ -93,7 +93,7 @@ const products = [
   {
     id: 10,
     name: "ELECTRIC WATER GUN",
-    price: 1599,
+    price: 1750,
     category: "Outdoor Toys",
     image: "/images/gallerypics/electric_watergun.jpg",
     description:

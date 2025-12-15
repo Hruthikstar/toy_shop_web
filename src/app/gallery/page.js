@@ -82,6 +82,9 @@ const products = [
 export default function GalleryPage() {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [search, setSearch] = useState("");
+  const [quantities, setQuantities] = useState(() =>
+    Object.fromEntries(products.map((p) => [p.id, 1]))
+  );
 
   const categories = [
     "All",
@@ -132,29 +135,65 @@ export default function GalleryPage() {
         {/* Products */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 pointer-events-auto">
           {filteredProducts.map((product) => (
-            <Link
+            <div
               key={product.id}
-              href={`/product/${product.id}`}
-              className="group block border rounded-xl p-4 cursor-pointer hover:shadow-lg transition-shadow transition-colors duration-200 relative z-20 pointer-events-auto h-full hover:bg-pink-50 hover:border-pink-200"
+              className="group block border rounded-xl p-4 hover:shadow-lg transition-shadow transition-colors duration-200 relative z-20 pointer-events-auto h-full hover:bg-pink-50 hover:border-pink-200"
             >
-              <div className="w-full h-44 relative overflow-hidden rounded-lg">
-                <Image
-                  src={product.image}
-                  alt={product.name}
-                  fill
-                  sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-                  className="object-cover transform transition-transform duration-300 group-hover:scale-105"
-                />
+              <div className="flex flex-col h-full">
+                <Link href={`/product/${product.id}`} className="block">
+                  <div className="w-full h-44 relative overflow-hidden rounded-lg">
+                    <Image
+                      src={product.image}
+                      alt={product.name}
+                      fill
+                      sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                      className="object-cover transform transition-transform duration-300 group-hover:scale-105"
+                    />
+                  </div>
+
+                  <h3 className="mt-4 font-semibold text-center line-clamp-2">
+                    {product.name}
+                  </h3>
+                </Link>
+
+                <div className="flex-1" />
+
+                <div className="mt-3 flex items-center justify-between">
+                  <div>
+                    <p className="font-bold text-pink-500">₹{product.price}</p>
+                  </div>
+
+                  <div className="flex items-center gap-2">
+                    {(quantities[product.id] || 1) > 1 && (
+                      <div className="w-10 text-center font-semibold">{quantities[product.id]}</div>
+                    )}
+
+                    <button
+                      onClick={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        const qtyToAdd = quantities[product.id] || 1;
+                        const existingCart = JSON.parse(localStorage.getItem('cart') || '[]');
+                        const existingItem = existingCart.find((it) => it.id === product.id);
+                        if (existingItem) {
+                          existingItem.quantity += qtyToAdd;
+                        } else {
+                          existingCart.push({ ...product, quantity: qtyToAdd });
+                        }
+                        localStorage.setItem('cart', JSON.stringify(existingCart));
+                        window.dispatchEvent(new Event('cartUpdated'));
+                        // reset quantity to 1 for this product
+                        setQuantities((q) => ({ ...q, [product.id]: 1 }));
+                      }}
+                      className="ml-2 inline-flex items-center gap-2 px-3 py-1.5 bg-pink-500 text-white font-semibold rounded-md hover:bg-pink-600 transition"
+                      aria-label={`Add ${product.name} to cart`}
+                    >
+                      Add +
+                    </button>
+                  </div>
+                </div>
               </div>
-
-              <h3 className="mt-4 font-semibold text-center">
-                {product.name}
-              </h3>
-
-              <p className="mt-1 font-bold text-center">
-                ₹{product.price}
-              </p>
-            </Link>
+            </div>
           ))}
         </div>
       </div>

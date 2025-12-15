@@ -3,15 +3,17 @@
 import { useState, useEffect } from 'react';
 import { FiX } from 'react-icons/fi';
 
-const ProductCart = ({ isOpen, product, onClose }) => {
-  const [quantity, setQuantity] = useState(1);
+const ProductCart = ({ isOpen, product, onClose, initialQuantity = 1 }) => {
+  const [quantity, setQuantity] = useState(initialQuantity);
 
-  // Close cart when product changes or isOpen becomes false
+  // Sync quantity when modal opens or initialQuantity changes
   useEffect(() => {
     if (!isOpen) {
       setQuantity(1);
+    } else {
+      setQuantity(initialQuantity || 1);
     }
-  }, [isOpen]);
+  }, [isOpen, initialQuantity]);
 
   if (!isOpen || !product) return null;
 
