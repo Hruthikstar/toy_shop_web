@@ -105,7 +105,7 @@ export default function GalleryPage() {
   return (
     <Layout>
       {/* IMPORTANT: create stacking context */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 pt-20 pb-16">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 pt-20 pb-16 min-h-screen">
         {/* Search */}
         <input
           type="text"
@@ -149,20 +149,14 @@ export default function GalleryPage() {
                       sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
                       className="object-cover transform transition-transform duration-300 group-hover:scale-105"
                     />
-
-                    {/* Premium overlay title (bottom-left) */}
-                    <div className="absolute left-3 bottom-3 bg-black/45 backdrop-blur-sm text-white px-3 py-1.5 rounded-md">
-                      <h3 className="text-sm font-playfair font-semibold tracking-wide">
-                        {product.name}
-                      </h3>
-                    </div>
                   </div>
                 </Link>
 
                 <div className="flex-1" />
 
                 <div className="mt-3 flex items-center justify-between">
-                  <div>
+                  <div className="text-left">
+                    <h3 className="font-semibold text-gray-900">{product.name}</h3>
                     <p className="font-bold text-pink-500">₹{product.price}</p>
                   </div>
 
