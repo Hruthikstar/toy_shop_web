@@ -142,10 +142,6 @@ export default function CartPage() {
               <div className="bg-white rounded-xl p-6 mb-8 space-y-3">
                 <div className="flex items-center gap-3 text-left text-gray-700">
                   <FiCheck className="text-green-500 text-xl flex-shrink-0" />
-                  <span className="text-sm">Free delivery on orders above ₹500</span>
-                </div>
-                <div className="flex items-center gap-3 text-left text-gray-700">
-                  <FiCheck className="text-green-500 text-xl flex-shrink-0" />
                   <span className="text-sm">7-day easy returns & exchanges</span>
                 </div>
                 <div className="flex items-center gap-3 text-left text-gray-700">

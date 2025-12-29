@@ -186,7 +186,6 @@ export default function ProductDetailPage() {
             </button>
 
             <div className="mt-8 pt-8 border-t border-gray-200 text-sm text-gray-600">
-              <p>✓ Free delivery on orders above ₹500</p>
               <p>✓ 7‑day easy returns</p>
               <p>✓ Secure checkout</p>
             </div>
