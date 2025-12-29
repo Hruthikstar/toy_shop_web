@@ -6,7 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Layout from "@/components/layout/Layout";
 import ProductCart from "@/components/ProductCart";
-import { FiArrowLeft, FiShoppingCart } from "react-icons/fi";
+import { FiArrowLeft, FiShoppingCart, FiChevronLeft, FiChevronRight } from "react-icons/fi";
 
 const products = [
   {
@@ -15,6 +15,11 @@ const products = [
     price: 550,
     category: "New Arrivals",
     image: "/images/gallerypics/blaze_storm.jpg",
+    images: [
+      "/images/gallerypics/blaze_storm.jpg",
+      "/images/gallerypics/blaze_storm.jpg",
+      "/images/gallerypics/blaze_storm.jpg",
+    ],
     description:
       "A powerful soft bullet blaster toy made for action-loving kids. Durable body, smooth shooting & safe foam bullets.",
   },
@@ -24,6 +29,11 @@ const products = [
     price: 1750,
     category: "New Arrivals",
     image: "/images/gallerypics/mp_18.jpg",
+    images: [
+      "/images/gallerypics/mp_18.jpg",
+      "/images/gallerypics/mp_18.jpg",
+      "/images/gallerypics/mp_18.jpg",
+    ],
     description:
       "A premium MP18 toy gun with soft bullets, strong grip, and stylish modern design. Safe and kid‑friendly.",
   },
@@ -32,8 +42,11 @@ const products = [
     name: "NAJA COBRA",
     price: 1750,
     category: "Soft Toys",
-    image: "/images/gallerypics/naja_cobra.jpg",
-    description:
+    image: "/images/gallerypics/naja_cobra.jpg",    images: [
+      "/images/gallerypics/naja_cobra.jpg",
+      "/images/gallerypics/naja_cobra.jpg",
+      "/images/gallerypics/naja_cobra.jpg",
+    ],    description:
       "A super soft cobra plush toy—cute, cuddly, and perfect for your child’s bedtime or playtime companion.",
   },
   {
@@ -42,6 +55,11 @@ const products = [
     price: 3300,
     category: "Vehicles",
     image: "/images/gallerypics/climbing.jpg",
+    images: [
+      "/images/gallerypics/climbing.jpg",
+      "/images/gallerypics/climbing.jpg",
+      "/images/gallerypics/climbing.jpg",
+    ],
     description:
       "A rugged rock‑climbing RC car with 4×4 grip, LED lights, and durable suspension. Made for outdoor fun.",
   },
@@ -51,6 +69,11 @@ const products = [
     price: 1599,
     category: "Vehicles",
     image: "/images/gallerypics/special_car.jpg",
+    images: [
+      "/images/gallerypics/special_car.jpg",
+      "/images/gallerypics/special_car.jpg",
+      "/images/gallerypics/special_car.jpg",
+    ],
     description:
       "High‑speed racing car with responsive controls, premium body design, and fast acceleration.",
   },
@@ -60,6 +83,11 @@ const products = [
     price: 320,
     category: "Vehicles",
     image: "/images/gallerypics/biginto_energy.jpg",
+    images: [
+      "/images/gallerypics/biginto_energy.jpg",
+      "/images/gallerypics/biginto_energy.jpg",
+      "/images/gallerypics/biginto_energy.jpg",
+    ],
     description:
       "High‑power stunt car with spinning, flipping and drifting abilities. Perfect for thrill seekers!",
   },
@@ -69,6 +97,11 @@ const products = [
     price: 320,
     category: "Electronic Toys",
     image: "/images/gallerypics/electric.jpg",
+    images: [
+      "/images/gallerypics/electric.jpg",
+      "/images/gallerypics/electric.jpg",
+      "/images/gallerypics/electric.jpg",
+    ],
     description:
       "A cute baby toy that responds to voice commands, moves, tumbles, and entertains for hours.",
   },
@@ -78,6 +111,11 @@ const products = [
     price: 1070,
     category: "Outdoor Toys",
     image: "/images/gallerypics/hopping_ball.jpg",
+    images: [
+      "/images/gallerypics/hopping_ball.jpg",
+      "/images/gallerypics/hopping_ball.jpg",
+      "/images/gallerypics/hopping_ball.jpg",
+    ],
     description:
       "A durable and fun bouncing ball toy that helps kids stay active and improves balance.",
   },
@@ -87,6 +125,11 @@ const products = [
     price: 470,
     category: "Educational Toys",
     image: "/images/gallerypics/card_early.jpg",
+    images: [
+      "/images/gallerypics/card_early.jpg",
+      "/images/gallerypics/card_early.jpg",
+      "/images/gallerypics/card_early.jpg",
+    ],
     description:
       "Interactive learning device with educational flashcards—perfect for building vocabulary and recognition.",
   },
@@ -96,6 +139,11 @@ const products = [
     price: 1750,
     category: "Outdoor Toys",
     image: "/images/gallerypics/electric_watergun.jpg",
+    images: [
+      "/images/gallerypics/electric_watergun.jpg",
+      "/images/gallerypics/electric_watergun.jpg",
+      "/images/gallerypics/electric_watergun.jpg",
+    ],
     description:
       "Automatic electric water gun with long‑range shooting and powerful stream—ultimate summer fun!",
   },
@@ -106,6 +154,7 @@ export default function ProductDetailPage() {
   const router = useRouter();
   const [product, setProduct] = useState(null);
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   useEffect(() => {
     const foundProduct = products.find(
@@ -146,17 +195,79 @@ export default function ProductDetailPage() {
         {/* Product Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
 
-          {/* Product Image */}
-          <div className="flex items-center justify-center">
-            <div className="w-full max-w-md rounded-xl overflow-hidden shadow-lg bg-pink-50 p-4">
-              <Image
-                src={product.image}
-                alt={product.name}
-                width={500}
-                height={500}
-                className="w-full object-contain"
-              />
+          {/* Product Image Gallery */}
+          <div>
+            {/* Main Image */}
+            <div className="relative mb-6">
+              <div className="w-full rounded-2xl overflow-hidden shadow-xl bg-pink-50 p-4 relative group">
+                <Image
+                  src={product.images ? product.images[currentImageIndex] : product.image}
+                  alt={product.name}
+                  width={500}
+                  height={500}
+                  className="w-full object-contain"
+                />
+              </div>
+
+              {/* Image Navigation Arrows */}
+              {product.images && product.images.length > 1 && (
+                <>
+                  <button
+                    onClick={() =>
+                      setCurrentImageIndex((prev) =>
+                        prev === 0 ? product.images.length - 1 : prev - 1
+                      )
+                    }
+                    className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-gray-800 p-3 rounded-full shadow-lg transition z-10"
+                    title="Previous image"
+                  >
+                    <FiChevronLeft className="text-xl" />
+                  </button>
+
+                  <button
+                    onClick={() =>
+                      setCurrentImageIndex((prev) =>
+                        prev === product.images.length - 1 ? 0 : prev + 1
+                      )
+                    }
+                    className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-gray-800 p-3 rounded-full shadow-lg transition z-10"
+                    title="Next image"
+                  >
+                    <FiChevronRight className="text-xl" />
+                  </button>
+
+                  {/* Image Counter */}
+                  <div className="absolute bottom-4 right-4 bg-black/50 text-white px-3 py-2 rounded-lg text-sm font-semibold">
+                    {currentImageIndex + 1} / {product.images.length}
+                  </div>
+                </>
+              )}
             </div>
+
+            {/* Thumbnail Images */}
+            {product.images && product.images.length > 1 && (
+              <div className="grid grid-cols-3 gap-3">
+                {product.images.map((img, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => setCurrentImageIndex(idx)}
+                    className={`relative rounded-lg overflow-hidden border-3 transition-all ${
+                      currentImageIndex === idx
+                        ? "border-pink-500 shadow-lg"
+                        : "border-gray-200 opacity-60 hover:opacity-100"
+                    }`}
+                  >
+                    <Image
+                      src={img}
+                      alt={`${product.name} view ${idx + 1}`}
+                      width={150}
+                      height={150}
+                      className="w-full h-24 object-cover"
+                    />
+                  </button>
+                ))}
+              </div>
+            )}
           </div>
 
           {/* Product Info */}
