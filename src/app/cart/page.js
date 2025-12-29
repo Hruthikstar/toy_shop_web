@@ -2,8 +2,9 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import Layout from '@/components/layout/Layout';
-import { FiTrash2, FiArrowLeft } from 'react-icons/fi';
+import { FiTrash2, FiArrowLeft, FiShoppingCart, FiCheck } from 'react-icons/fi';
 
 export default function CartPage() {
   const [cartItems, setCartItems] = useState([]);
@@ -108,144 +109,287 @@ export default function CartPage() {
   /* ================= UI ================= */
   return (
     <Layout>
-      <div className="max-w-7xl mx-auto px-4 pt-24 pb-16">
+      <div className="max-w-7xl mx-auto px-4 pt-24 pb-16 min-h-screen">
 
-        <Link href="/gallery" className="flex items-center gap-2 text-pink-500 mb-6">
-          <FiArrowLeft /> Continue Shopping
-        </Link>
-
-        <h1 className="text-4xl font-bold mb-8">Shopping Cart</h1>
+        {/* Header */}
+        <div className="mb-8">
+          <Link href="/gallery" className="flex items-center gap-2 text-pink-500 hover:text-pink-600 font-semibold transition mb-6">
+            <FiArrowLeft /> Continue Shopping
+          </Link>
+          
+          <div className="flex items-center gap-3 mb-2">
+            <FiShoppingCart className="text-3xl text-pink-500" />
+            <h1 className="text-4xl font-bold text-gray-900">Shopping Cart</h1>
+          </div>
+          <p className="text-gray-500">Review your items and proceed to checkout</p>
+        </div>
 
         {cartItems.length === 0 ? (
-          <p>Your cart is empty</p>
+          /* EMPTY CART STATE - PREMIUM DESIGN */
+          <div className="flex flex-col items-center justify-center py-20">
+            <div className="bg-gradient-to-br from-pink-50 to-pink-100 rounded-3xl p-12 text-center max-w-md w-full shadow-lg">
+              {/* Animated Empty Cart Icon */}
+              <div className="flex items-center justify-center w-24 h-24 mx-auto bg-white rounded-full shadow-lg mb-6">
+                <FiShoppingCart className="text-5xl text-pink-500" />
+              </div>
+
+              <h2 className="text-3xl font-bold text-gray-900 mb-3">Your Cart is Empty</h2>
+              <p className="text-gray-600 mb-8 text-lg">
+                No items yet! Explore our amazing collection of toys and add something special to your cart.
+              </p>
+
+              {/* Features List */}
+              <div className="bg-white rounded-xl p-6 mb-8 space-y-3">
+                <div className="flex items-center gap-3 text-left text-gray-700">
+                  <FiCheck className="text-green-500 text-xl flex-shrink-0" />
+                  <span className="text-sm">Free delivery on orders above ₹500</span>
+                </div>
+                <div className="flex items-center gap-3 text-left text-gray-700">
+                  <FiCheck className="text-green-500 text-xl flex-shrink-0" />
+                  <span className="text-sm">7-day easy returns & exchanges</span>
+                </div>
+                <div className="flex items-center gap-3 text-left text-gray-700">
+                  <FiCheck className="text-green-500 text-xl flex-shrink-0" />
+                  <span className="text-sm">Secure & fast checkout</span>
+                </div>
+              </div>
+
+              <Link
+                href="/gallery"
+                className="inline-block w-full bg-gradient-to-r from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700 text-white font-bold py-4 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg"
+              >
+                Start Shopping Now
+              </Link>
+
+              <p className="text-gray-500 text-sm mt-6">
+                Discover 100+ premium toys for kids
+              </p>
+            </div>
+          </div>
         ) : (
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
 
             {/* CART ITEMS */}
-            <div className="lg:col-span-2 space-y-4">
-              {cartItems.map(item => (
-                <div
-                  key={item.id}
-                  className="bg-white border rounded-lg p-4 flex gap-4"
-                >
-                  <img
-                    src={item.image}
-                    alt={item.name}
-                    className="w-24 h-24 rounded object-cover"
-                  />
-
-                  <div className="flex-1">
-                    <h3 className="font-semibold">{item.name}</h3>
-                    <p className="text-pink-500 font-bold">₹{item.price}</p>
-                  </div>
-
-                  <div className="flex flex-col items-end">
-                    <div className="flex border rounded">
-                      <button
-                        onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                        className="px-2"
-                      >−</button>
-
-                      <span className="px-3">{item.quantity}</span>
-
-                      <button
-                        onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                        className="px-2"
-                      >+</button>
+            <div className="lg:col-span-2">
+              <div className="space-y-4">
+                {cartItems.map((item, index) => (
+                  <div
+                    key={item.id}
+                    className="bg-white border border-gray-200 rounded-xl p-5 flex gap-5 hover:shadow-lg transition-all duration-300 hover:border-pink-200"
+                  >
+                    {/* Product Image */}
+                    <div className="flex-shrink-0">
+                      <div className="w-24 h-24 rounded-lg overflow-hidden bg-gray-100 relative">
+                        <Image
+                          src={item.image}
+                          alt={item.name}
+                          fill
+                          className="object-cover"
+                        />
+                      </div>
                     </div>
 
-                    <button
-                      onClick={() => removeItem(item.id)}
-                      className="text-red-500 mt-2"
-                    >
-                      <FiTrash2 />
-                    </button>
+                    {/* Product Info */}
+                    <div className="flex-1">
+                      <div className="flex items-start justify-between mb-2">
+                        <div>
+                          <span className="inline-block text-xs bg-pink-100 text-pink-600 font-semibold px-2 py-1 rounded-full mb-2">
+                            Item {index + 1}
+                          </span>
+                          <h3 className="font-semibold text-gray-900 text-lg">{item.name}</h3>
+                        </div>
+                      </div>
+                      <p className="text-pink-500 font-bold text-lg">₹{item.price.toLocaleString('en-IN')}</p>
+                    </div>
+
+                    {/* Quantity & Actions */}
+                    <div className="flex flex-col items-end gap-3">
+                      {/* Quantity Controls */}
+                      <div className="flex items-center border border-gray-300 rounded-lg overflow-hidden">
+                        <button
+                          onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                          className="px-3 py-2 hover:bg-pink-50 transition font-semibold text-gray-600"
+                        >
+                          −
+                        </button>
+                        <span className="px-4 py-2 font-semibold text-gray-900">{item.quantity}</span>
+                        <button
+                          onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                          className="px-3 py-2 hover:bg-pink-50 transition font-semibold text-gray-600"
+                        >
+                          +
+                        </button>
+                      </div>
+
+                      {/* Line Total */}
+                      <div className="text-right">
+                        <p className="text-xs text-gray-500 mb-1">Subtotal</p>
+                        <p className="font-bold text-pink-500">₹{(item.price * item.quantity).toLocaleString('en-IN')}</p>
+                      </div>
+
+                      {/* Remove Button */}
+                      <button
+                        onClick={() => removeItem(item.id)}
+                        className="text-red-500 hover:text-red-700 hover:bg-red-50 p-2 rounded-lg transition"
+                        title="Remove item"
+                      >
+                        <FiTrash2 className="text-lg" />
+                      </button>
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
 
-            {/* SUMMARY */}
-            <div className="bg-gray-50 p-6 rounded-lg">
-              <h2 className="text-xl font-bold mb-4">Order Summary</h2>
+            {/* ORDER SUMMARY - PREMIUM DESIGN */}
+            <div className="lg:col-span-1">
+              <div className="bg-gradient-to-br from-pink-50 to-pink-100 rounded-2xl p-8 border border-pink-200 sticky top-24 shadow-lg">
+                <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
+                  <FiCheck className="text-pink-500" />
+                  Order Summary
+                </h2>
 
-              <div className="flex justify-between mb-2">
-                <span>Subtotal</span>
-                <span>₹{subtotal()}</span>
+                <div className="space-y-4 mb-6 pb-6 border-b border-pink-200">
+                  <div className="flex justify-between items-center">
+                    <span className="text-gray-700 font-medium">Subtotal</span>
+                    <span className="font-semibold text-gray-900">₹{subtotal().toLocaleString('en-IN')}</span>
+                  </div>
+
+                  <div className="flex justify-between items-center">
+                    <span className="text-gray-700 font-medium">Delivery Fee</span>
+                    <span className="font-semibold text-gray-900">₹{DELIVERY_FEE}</span>
+                  </div>
+
+                  <div className="bg-white rounded-lg p-3">
+                    <div className="flex justify-between items-center">
+                      <span className="font-bold text-lg text-gray-900">Total</span>
+                      <span className="text-2xl font-bold text-pink-500">₹{grandTotal().toLocaleString('en-IN')}</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Benefits */}
+                <div className="space-y-2 mb-6 text-sm">
+                  <div className="flex items-center gap-2 text-gray-700">
+                    <FiCheck className="text-green-500 flex-shrink-0" />
+                    <span>Free returns within 7 days</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-gray-700">
+                    <FiCheck className="text-green-500 flex-shrink-0" />
+                    <span>Secure WhatsApp checkout</span>
+                  </div>
+                </div>
+
+                <button
+                  onClick={() => setShowCheckout(true)}
+                  className="w-full bg-gradient-to-r from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700 text-white font-bold py-4 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg"
+                >
+                  Proceed to Checkout
+                </button>
+
+                <Link
+                  href="/gallery"
+                  className="block text-center mt-4 text-pink-600 hover:text-pink-700 font-semibold transition"
+                >
+                  Continue Shopping
+                </Link>
               </div>
-
-              <div className="flex justify-between mb-2">
-                <span>Delivery Fee</span>
-                <span>₹{DELIVERY_FEE}</span>
-              </div>
-
-              <div className="border-t pt-4 flex justify-between font-bold">
-                <span>Total</span>
-                <span className="text-pink-500">₹{grandTotal()}</span>
-              </div>
-
-              <button
-                onClick={() => setShowCheckout(true)}
-                className="w-full mt-6 bg-pink-500 text-white py-3 rounded"
-              >
-                Proceed to Checkout
-              </button>
             </div>
           </div>
         )}
       </div>
 
-      {/* CHECKOUT MODAL */}
+      {/* CHECKOUT MODAL - PREMIUM DESIGN */}
       {showCheckout && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-          <div className="bg-white p-6 rounded-lg w-full max-w-md">
-            <h2 className="text-xl font-bold mb-4">Customer Details</h2>
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-2xl w-full max-w-md shadow-2xl overflow-hidden">
+            {/* Header */}
+            <div className="bg-gradient-to-r from-pink-500 to-pink-600 px-6 py-6">
+              <h2 className="text-2xl font-bold text-white flex items-center gap-2">
+                <FiShoppingCart />
+                Checkout Details
+              </h2>
+              <p className="text-pink-100 text-sm mt-1">Enter your details to proceed</p>
+            </div>
 
-            <input
-              placeholder="Name"
-              value={customer.name}
-              onChange={(e) =>
-                setCustomer({ ...customer, name: e.target.value })
-              }
-            />
+            {/* Form Content */}
+            <div className="p-6 space-y-4">
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-2">Full Name *</label>
+                <input
+                  type="text"
+                  placeholder="Your full name"
+                  value={customer.name}
+                  onChange={(e) =>
+                    setCustomer({ ...customer, name: e.target.value })
+                  }
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent outline-none transition"
+                />
+              </div>
 
-            <input
-              placeholder="Phone"
-              value={customer.phone}
-              onChange={(e) =>
-                setCustomer({ ...customer, phone: e.target.value })
-              }
-            />
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-2">Phone Number *</label>
+                <input
+                  type="tel"
+                  placeholder="10-digit phone number"
+                  value={customer.phone}
+                  onChange={(e) =>
+                    setCustomer({ ...customer, phone: e.target.value })
+                  }
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent outline-none transition"
+                />
+              </div>
 
-            <textarea
-              placeholder="Address"
-              value={customer.address}
-              onChange={(e) =>
-                setCustomer({ ...customer, address: e.target.value })
-              }
-            />
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-2">Delivery Address *</label>
+                <textarea
+                  placeholder="Enter your complete address"
+                  value={customer.address}
+                  onChange={(e) =>
+                    setCustomer({ ...customer, address: e.target.value })
+                  }
+                  rows="3"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent outline-none transition resize-none"
+                />
+              </div>
 
-            <textarea
-              placeholder="Note (optional)"
-              value={customer.note}
-              onChange={(e) =>
-                setCustomer({ ...customer, note: e.target.value })
-              }
-            />
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-2">Special Instructions (Optional)</label>
+                <textarea
+                  placeholder="Any special requests or notes?"
+                  value={customer.note}
+                  onChange={(e) =>
+                    setCustomer({ ...customer, note: e.target.value })
+                  }
+                  rows="2"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent outline-none transition resize-none"
+                />
+              </div>
 
-            <button
-              onClick={sendToWhatsApp}
-              className="w-full bg-green-500 text-white py-2 rounded mt-3"
-            >
-              Send Order via WhatsApp
-            </button>
+              {/* Order Summary in Modal */}
+              <div className="bg-pink-50 rounded-lg p-4 border border-pink-200">
+                <p className="text-xs text-gray-600 mb-2">ORDER TOTAL</p>
+                <p className="text-2xl font-bold text-pink-600">₹{grandTotal().toLocaleString('en-IN')}</p>
+              </div>
+            </div>
 
-            <button
-              onClick={() => setShowCheckout(false)}
-              className="w-full bg-gray-200 py-2 rounded mt-2"
-            >
-              Cancel
-            </button>
+            {/* Buttons */}
+            <div className="px-6 py-4 bg-gray-50 border-t space-y-2">
+              <button
+                onClick={sendToWhatsApp}
+                className="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-3 rounded-lg transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2"
+              >
+                <FiCheck />
+                Send Order via WhatsApp
+              </button>
+
+              <button
+                onClick={() => setShowCheckout(false)}
+                className="w-full bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold py-3 rounded-lg transition"
+              >
+                Cancel
+              </button>
+            </div>
           </div>
         </div>
       )}
