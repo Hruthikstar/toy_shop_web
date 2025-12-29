@@ -299,13 +299,22 @@ export default function CartPage() {
       {showCheckout && (
         <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
           <div className="bg-white rounded-2xl w-full max-w-md shadow-2xl overflow-hidden">
-            {/* Header */}
-            <div className="bg-gradient-to-r from-pink-500 to-pink-600 px-6 py-6">
-              <h2 className="text-2xl font-bold text-white flex items-center gap-2">
-                <FiShoppingCart />
-                Checkout Details
-              </h2>
-              <p className="text-pink-100 text-sm mt-1">Enter your details to proceed</p>
+            {/* Header with Back Button */}
+            <div className="bg-gradient-to-r from-pink-500 to-pink-600 px-6 py-6 flex items-start justify-between">
+              <div className="flex-1">
+                <h2 className="text-2xl font-bold text-white flex items-center gap-2">
+                  <FiShoppingCart />
+                  Checkout Details
+                </h2>
+                <p className="text-pink-100 text-sm mt-1">Enter your details to proceed</p>
+              </div>
+              <button
+                onClick={() => setShowCheckout(false)}
+                className="text-white hover:bg-white/20 p-2 rounded-lg transition flex-shrink-0"
+                title="Go back"
+              >
+                <FiArrowLeft className="text-xl" />
+              </button>
             </div>
 
             {/* Form Content */}
@@ -381,9 +390,10 @@ export default function CartPage() {
 
               <button
                 onClick={() => setShowCheckout(false)}
-                className="w-full bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold py-3 rounded-lg transition"
+                className="w-full bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold py-3 rounded-lg transition flex items-center justify-center gap-2"
               >
-                Cancel
+                <FiArrowLeft />
+                Back to Cart
               </button>
             </div>
           </div>
