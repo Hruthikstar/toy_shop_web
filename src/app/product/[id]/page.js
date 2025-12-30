@@ -17,8 +17,8 @@ const products = [
     image: "/images/gallerypics/blaze_storm.jpg",
     images: [
       "/images/gallerypics/blaze_storm.jpg",
-      "/images/gallerypics/blaze_storm.jpg",
-      "/images/gallerypics/blaze_storm.jpg",
+      "/images/blaze1.jpg",
+      "/images/blaze2.jpg",
     ],
     description:
       "A powerful soft bullet blaster toy made for action-loving kids. Durable body, smooth shooting & safe foam bullets.",
@@ -31,8 +31,8 @@ const products = [
     image: "/images/gallerypics/mp_18.jpg",
     images: [
       "/images/gallerypics/mp_18.jpg",
-      "/images/gallerypics/mp_18.jpg",
-      "/images/gallerypics/mp_18.jpg",
+      "/images/mp181.jpg",
+      "/images/mp182.jpg",
     ],
     description:
       "A premium MP18 toy gun with soft bullets, strong grip, and stylish modern design. Safe and kid‑friendly.",
@@ -42,11 +42,13 @@ const products = [
     name: "NAJA COBRA",
     price: 1750,
     category: "Soft Toys",
-    image: "/images/gallerypics/naja_cobra.jpg",    images: [
+    image: "/images/gallerypics/naja_cobra.jpg",   
+     images: [
       "/images/gallerypics/naja_cobra.jpg",
-      "/images/gallerypics/naja_cobra.jpg",
-      "/images/gallerypics/naja_cobra.jpg",
-    ],    description:
+      "/images/naja 2.jpg",
+      "/images/naja3.jpg",
+    ],
+    description:
       "A super soft cobra plush toy—cute, cuddly, and perfect for your child’s bedtime or playtime companion.",
   },
   {
@@ -57,8 +59,8 @@ const products = [
     image: "/images/gallerypics/climbing.jpg",
     images: [
       "/images/gallerypics/climbing.jpg",
-      "/images/gallerypics/climbing.jpg",
-      "/images/gallerypics/climbing.jpg",
+      "/images/rocks1.jpg",
+      "/images/rocks2.jpg",
     ],
     description:
       "A rugged rock‑climbing RC car with 4×4 grip, LED lights, and durable suspension. Made for outdoor fun.",
@@ -85,8 +87,8 @@ const products = [
     image: "/images/gallerypics/biginto_energy.jpg",
     images: [
       "/images/gallerypics/biginto_energy.jpg",
-      "/images/gallerypics/biginto_energy.jpg",
-      "/images/gallerypics/biginto_energy.jpg",
+      "/images/biginto1.jpg",
+      "/images/biginto2.jpg",
     ],
     description:
       "High‑power stunt car with spinning, flipping and drifting abilities. Perfect for thrill seekers!",
@@ -99,8 +101,8 @@ const products = [
     image: "/images/gallerypics/electric.jpg",
     images: [
       "/images/gallerypics/electric.jpg",
-      "/images/gallerypics/electric.jpg",
-      "/images/gallerypics/electric.jpg",
+      "/images/creativity1.jpg",
+      "/images/creativity2.jpg",
     ],
     description:
       "A cute baby toy that responds to voice commands, moves, tumbles, and entertains for hours.",
@@ -113,8 +115,8 @@ const products = [
     image: "/images/gallerypics/hopping_ball.jpg",
     images: [
       "/images/gallerypics/hopping_ball.jpg",
-      "/images/gallerypics/hopping_ball.jpg",
-      "/images/gallerypics/hopping_ball.jpg",
+      "/images/hopping ball1.jpg",
+      "/images/hopping ball2.jpg",
     ],
     description:
       "A durable and fun bouncing ball toy that helps kids stay active and improves balance.",
@@ -127,8 +129,8 @@ const products = [
     image: "/images/gallerypics/card_early.jpg",
     images: [
       "/images/gallerypics/card_early.jpg",
-      "/images/gallerypics/card_early.jpg",
-      "/images/gallerypics/card_early.jpg",
+      "/images/card1.jpg",
+      "/images/card2.jpg",
     ],
     description:
       "Interactive learning device with educational flashcards—perfect for building vocabulary and recognition.",
@@ -141,8 +143,8 @@ const products = [
     image: "/images/gallerypics/electric_watergun.jpg",
     images: [
       "/images/gallerypics/electric_watergun.jpg",
-      "/images/gallerypics/electric_watergun.jpg",
-      "/images/gallerypics/electric_watergun.jpg",
+      "/images/electric water gun.jpg",
+      "/images/electric water gun1.jpg",
     ],
     description:
       "Automatic electric water gun with long‑range shooting and powerful stream—ultimate summer fun!",

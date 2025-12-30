@@ -7,25 +7,25 @@ const TestimonialsSection = () => {
   const testimonials = [
     {
       name: 'Priya R.',
-      image: '/images/testimonial-1.jpg', // Add placeholder images
+      image: 'images/priya.jpg', // Add placeholder images
       rating: 5,
       comment: 'Amazing selection of baby products! The staff was very helpful in finding exactly what I needed for my newborn.'
     },
     {
       name: 'Karthik S.',
-      image: '/images/testimonial-2.jpg',
+      image: '/images/karthik.jpg',
       rating: 5,
       comment: 'Quality products at reasonable prices. My kids love the educational toys we bought from here.'
     },
     {
       name: 'Lakshmi M.',
-      image: '/images/testimonial-3.jpg',
+      image: '/images/laks.jpg',
       rating: 5,
       comment: 'Best baby shop in Tenkasi! Great customer service and wide variety of products.'
     },
     {
       name: 'Raj Kumar',
-      image: '/images/testimonial-4.jpg',
+      image: 'images/priya.jpg',
       rating: 5,
       comment: 'Excellent shopping experience. The staff is knowledgeable and friendly.'
     }
