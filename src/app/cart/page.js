@@ -297,8 +297,8 @@ export default function CartPage() {
 
       {/* CHECKOUT MODAL - PREMIUM DESIGN */}
       {showCheckout && (
-        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-2xl w-full max-w-md shadow-2xl overflow-hidden">
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-end sm:items-center justify-center z-50 p-0 sm:p-4">
+          <div className="bg-white rounded-t-2xl sm:rounded-2xl w-full sm:max-w-md md:max-w-2xl shadow-2xl overflow-y-auto max-h-[95vh]">
             {/* Header with Back Button */}
             <div className="bg-gradient-to-r from-pink-500 to-pink-600 px-6 py-6 flex items-start justify-between">
               <div className="flex-1">
