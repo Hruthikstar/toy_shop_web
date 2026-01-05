@@ -83,18 +83,19 @@ const Navbar = () => {
                 />
             </div>
 
-            {/* Wordmark Logo (Text Logo) */}
-            <div className="h-12 relative">
-                <Image
-                src="/images/titlelogo.png" // Replace with your own path
-                alt="Chellamay Text Logo"
-                width={180} // or 200
-                height={45} // or 50
-                className="object-contain"
-                priority
-                />
-            </div>
-            </Link>
+            {/* Wordmark Logo */}
+          <div className="relative h-12 w-auto flex items-center">
+                  <Image
+                    src="/images/nav.png"
+                    alt="Chellamay Text Logo"
+                    width={160}
+                    height={48}
+                    className="object-contain"
+                    priority
+                  />
+                </div>
+              </Link>
+
 
           {/* Desktop Menu with playful hover effects */}
           <div className="hidden lg:flex items-center space-x-2">

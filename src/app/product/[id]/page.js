@@ -51,6 +51,8 @@ const products = [
     description:
       "A super soft cobra plush toy—cute, cuddly, and perfect for your child’s bedtime or playtime companion.",
   },
+
+  
   {
     id: 4,
     name: "ROCK CLIMBER",
