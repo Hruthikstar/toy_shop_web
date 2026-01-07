@@ -42,7 +42,7 @@ const HeroSlider = () => {
       cta: 'Explore Our Collection',
       path: '/gallery',
       desktopImage: '/images/dismobile.jpeg',
-      mobileImage: '/images/special_dis.jpg',
+      mobileImage: '/images/special.jpg',
     },
     {
       title: 'Expert Baby Care Advice',
