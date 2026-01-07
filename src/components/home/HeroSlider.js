@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import Slider from 'react-slick';
+
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
@@ -16,35 +17,40 @@ const HeroSlider = () => {
       subtitle: 'Your Trusted Destination for Quality Baby Products in Tenkasi',
       cta: 'Explore Our Collection',
       path: '/gallery',
-      image: '/images/hero1.jpg.png',
+      desktopImage: '/images/hero1.jpg.png',
+      mobileImage: '/images/hero1-desk.jpeg',
     },
     {
-      title: 'New Arrivals Every Week',
-      subtitle: 'Discover the Latest in Baby Care, Toys, and More',
+      title: '',
+      subtitle: '',
       cta: 'Explore Our Collection',
       path: '/gallery',
-      image: '/images/hero2.jpg',
+      desktopImage: '/images/new.jpg',
+      mobileImage: '/images/new-desk.jpeg',
     },
     {
       title: 'Baby Care Essentials',
       subtitle: 'Premium Quality Products for Your Little One\'s Comfort',
       cta: 'Explore Our Collection',
       path: '/gallery',
-      image: '/images/hero3.jpeg',
+      desktopImage: '/images/hero3.jpeg',
+      mobileImage: '/images/hero3.jpeg',
     },
     {
-      title: 'Special Discounts',
-      subtitle: 'Save Big on Selected Baby Products This Week',
+      title: '',
+      subtitle: '',
       cta: 'Explore Our Collection',
       path: '/gallery',
-      image: '/images/discount.jpg',
+      desktopImage: '/images/dismobile.jpeg',
+      mobileImage: '/images/special_dis.jpg',
     },
     {
       title: 'Expert Baby Care Advice',
       subtitle: 'Get Tips and Guidance from Our Experienced Team',
       cta: 'Explore Our Collection',
       path: '/gallery',
-      image: '/images/hero5.jpeg',
+      desktopImage: '/images/hero5.jpeg',
+      mobileImage: '/images/hero5.jpeg',
     },
   ];
 
@@ -67,45 +73,68 @@ const HeroSlider = () => {
       />
     ),
     appendDots: dots => (
-      <div className="absolute bottom-5 w-full">
+      <div className="absolute bottom-4 md:bottom-6 w-full">
         <ul className="flex justify-center gap-2">{dots}</ul>
       </div>
-    )
+    ),
   };
 
   return (
-    <div className="relative w-full h-[600px] overflow-hidden">
+    <div className="relative w-full h-[420px] sm:h-[500px] md:h-[600px] overflow-hidden">
       <Slider {...settings} className="h-full">
         {slides.map((slide, index) => (
-          <div key={index} className="relative h-[600px]">
-
-            {/* Background Image (Dynamic) */}
-            <Image
-              src={slide.image}
-              alt={slide.title}
-              fill
-              priority={index === 0}
-              className="object-cover"
-            />
-
-            {/* Dark overlay */}
-            <div className="absolute inset-0 bg-black/40" />
-
-            {/* Content */}
-            <div className="relative z-10 h-full flex flex-col justify-center items-center text-center px-4 max-w-6xl mx-auto">
-              <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 drop-shadow-lg">
-                {slide.title}
-              </h1>
-              <p className="text-xl md:text-2xl text-white/90 mb-10 max-w-3xl">
-                {slide.subtitle}
-              </p>
-              <Link href={slide.path}>
-                <span className="inline-flex items-center px-8 py-3 font-bold text-white bg-pink-600 rounded-full hover:bg-pink-700 transition">
-                  {slide.cta}
-                </span>
-              </Link>
+          <div
+            key={index}
+            className="relative h-[420px] sm:h-[500px] md:h-[600px]"
+          >
+            {/* Desktop Image */}
+            <div className="hidden md:block absolute inset-0">
+              <Image
+                src={slide.desktopImage}
+                alt={slide.title}
+                fill
+                priority={index === 0}
+                className="object-cover"
+              />
             </div>
 
+            {/* Mobile Image */}
+            <div className="block md:hidden absolute inset-0">
+              <Image
+                src={slide.mobileImage}
+                alt={slide.title}
+                fill
+                priority={index === 0}
+                className="object-cover"
+              />
+            </div>
+
+            {/* Overlay */}
+              {(slide.title || slide.subtitle) && (
+                <div className="absolute inset-0 bg-black/50" />
+              )}
+
+            {/* Content */}
+            <div className="relative z-10 h-full flex items-center">
+              <div className="w-full px-4 sm:px-6 md:px-10 text-center max-w-5xl mx-auto">
+                <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold text-white mb-4 leading-tight">
+                  {slide.title}
+                </h1>
+
+                <p className="text-sm sm:text-base md:text-xl text-white/90 mb-8 max-w-3xl mx-auto">
+                  {slide.subtitle}
+                </p>
+
+                {(slide.title || slide.subtitle) && (
+                  <Link href={slide.path}>
+                    <span className="inline-block px-6 sm:px-8 py-3 text-sm sm:text-base font-semibold text-white bg-pink-600 rounded-full hover:bg-pink-700 transition">
+                      {slide.cta}
+                    </span>
+                  </Link>
+                )}
+
+              </div>
+            </div>
           </div>
         ))}
       </Slider>

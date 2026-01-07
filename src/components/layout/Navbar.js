@@ -86,7 +86,7 @@ const Navbar = () => {
             {/* Wordmark Logo */}
           <div className="relative h-12 w-auto flex items-center">
                   <Image
-                    src="/images/nav.png"
+                    src="/images/chellogo.png"
                     alt="Chellamay Text Logo"
                     width={160}
                     height={48}
